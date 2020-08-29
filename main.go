@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/csv"
 	"flag"
 	"log"
+	"os"
 	"time"
 
 	"github.com/gocolly/colly"
@@ -59,10 +61,36 @@ func main() {
 
 		c.Visit("http://quotes.toscrape.com/")
 
+		fName := "titles.csv"
+		file, err := os.Create(fName)
+		if err != nil {
+			log.Fatalf("Cannot create file %q: %s\n", fName, err)
+			return
+		}
+		defer file.Close()
+		writer := csv.NewWriter(file)
+		defer writer.Flush()
+
+		writer.Write([]string{"Titles"})
+
+		c2 := colly.NewCollector()
+
+		c2.OnHTML("span.text", func(e *colly.HTMLElement) {
+			key := e.Text
+			writer.Write([]string{
+				key,
+			})
+		})
+
+		c2.Visit("http://quotes.toscrape.com/")
+
 		if *boolPtr == false {
 			break
 		}
+
 		time.Sleep(time.Duration(*timePtr) * time.Minute)
+
+		//span.text
 
 	}
 
