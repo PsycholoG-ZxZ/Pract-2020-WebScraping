@@ -3,7 +3,7 @@
 
 #### **Start**
 Get Colly lib:
-##### `go get -u github.com/gocolly/colly/...`
+ `go get -u github.com/gocolly/colly/...`
 Then rebuild app and start it with this code:
 
 ```
