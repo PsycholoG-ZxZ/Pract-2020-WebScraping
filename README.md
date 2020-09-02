@@ -13,7 +13,7 @@ Then rebuild app and start it with this code:
 Or start .exe file on Windows
 ### **Flags**
 - `-online` - set an infinite number of iterations. Default number is 1
-- `-(any float digit ( bigger than zero ))` - set time (minutes) between iterations. Default time is 1 min
+- `-(MIN= any float digit ( bigger than zero ))` - set time (minutes) between iterations. Default time is 1 min
 
 ### **Tasks**
 - [x] Scrape Websites behind a Login and without it
